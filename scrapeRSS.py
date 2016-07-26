@@ -18,13 +18,13 @@ d = feedparser.parse('http://tools.cisco.com/security/center/psirtrss20/CiscoSec
 dateConvert2 = datetime.strptime(dateConvert, '%Y-%m-%d')
 
 #dateDelta = dateConvert2 - timedelta(days=60)
+#define the reg ex for getting the vulnerability GUID
+vulnGuidRegEx = re.compile(r'cisco-sa-[0-9]{8}-.+')
 
 i = 0
 numberOfEntries = len(d['entries'])
 print numberOfEntries
 while i < numberOfEntries: 
-    #define the reg ex for getting the vulnerability GUID
-    vulnGuidRegEx = re.compile(r'cisco-sa-[0-9]{8}-.+')
     vulnTitle = d.entries[i].title
     vulnLink = d.entries[i].link
     vulnGuidURL = d.entries[i].guid
